@@ -6,17 +6,22 @@ import Content from './components/Content';
 
 Vue.use(Router);
 
+export const NAMES = {
+  HOME: 'home',
+  CONTENT: 'content',
+};
+
 export default new Router({
   mode: 'hash',
   routes: [
     {
       path: '/',
-      name: 'home',
+      name: NAMES.HOME,
       component: Home
     },
     {
       path: '/content',
-      name: 'content',
+      name: NAMES.CONTENT,
       component: Content
     },
   ]
