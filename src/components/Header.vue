@@ -1,7 +1,8 @@
 <template>
   <div>
-    <p>{{ title }}</p>
-    <br>
+    <div class="header">
+      {{ title }}
+    </div>
   </div>
 </template>
 
@@ -16,3 +17,13 @@ export default {
   },
 };
 </script>
+
+<style module>
+  .header {
+    background: #55c500;
+    color: white;
+    font-size: 32px;
+    line-height: 32px;
+    padding: 16px;
+  }
+</style>
