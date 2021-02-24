@@ -9,7 +9,7 @@
   </div>
 </template>
 <script>
-import { NAMES } from './../router';
+import { NAMES } from '@/router';
 
 export default {
   data: () => ({
