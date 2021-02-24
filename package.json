@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "prettier": "prettier --write './src/js/**/*.*'",
     "build": "webpack --mode production --progress",
     "watch": "webpack --mode development --progress --watch",
     "start": "webpack-cli serve --mode development"
@@ -14,7 +15,10 @@
   "devDependencies": {
     "css-loader": "^5.0.2",
     "eslint": "^7.20.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-prettier": "^8.0.0",
     "eslint-loader": "^4.0.2",
+    "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-vue": "^7.6.0",
     "html-webpack-plugin": "^5.2.0",
     "style-loader": "^2.0.0",

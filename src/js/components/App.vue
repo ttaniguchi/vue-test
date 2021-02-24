@@ -3,7 +3,7 @@
 </template>
 
 <style module>
-  body {
-    margin: 0;
-  }
+body {
+  margin: 0;
+}
 </style>

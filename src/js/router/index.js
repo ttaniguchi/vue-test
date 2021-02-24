@@ -17,12 +17,12 @@ export default new Router({
     {
       path: '/',
       name: NAMES.HOME,
-      component: Home
+      component: Home,
     },
     {
       path: '/content',
       name: NAMES.CONTENT,
-      component: Content
+      component: Content,
     },
-  ]
+  ],
 });

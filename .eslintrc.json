@@ -1,11 +1,15 @@
 {
   "extends": [
-      "eslint:recommended",
-      "plugin:vue/recommended"
+    "google",
+    "plugin:vue/essential",
+    "plugin:prettier/recommended"
   ],
   "rules": {
-      "semi": "error",
-      "indent": ["error", 2],
-      "quotes": ["error", "single"]
+    "semi": "error",
+    "indent": ["error", 2],
+    "quotes": ["error", "single"],
+    "new-cap": ["error", { "capIsNewExceptions": ["Component", "Prop"] }],
+    "require-jsdoc": "off",
+    "vue/experimental-script-setup-vars": "off"
   }
 }

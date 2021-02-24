@@ -7,6 +7,7 @@
     </router-link>
   </div>
 </template>
+
 <script>
 import { NAMES } from '@/router';
 import Header from '@/components/Header';

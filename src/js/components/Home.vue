@@ -7,6 +7,7 @@
     </router-link>
   </div>
 </template>
+
 <script>
 import { NAMES } from '@/router';
 import Header from '@/components/Header';
@@ -29,6 +30,6 @@ export default {
   beforeUpdate: () => console.log('beforeUpdate'),
   updated: () => console.log('updated'),
   beforeDestroy: () => console.log('beforeDestroy'),
-  destroyed: () => console.log('destroyed')
+  destroyed: () => console.log('destroyed'),
 };
 </script>
