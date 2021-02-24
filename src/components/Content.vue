@@ -1,8 +1,7 @@
 <template>
   <div>
-    <p>{{ title }}</p>
+    <Header :title="title" />
 
-    <br>
     <router-link :to="link.to">
       {{ link.label }}
     </router-link>
@@ -10,8 +9,12 @@
 </template>
 <script>
 import { NAMES } from '@/router';
+import Header from '@/components/Header';
 
 export default {
+  components: {
+    Header,
+  },
   data: () => ({
     title: NAMES.CONTENT,
     link: {
