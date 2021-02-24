@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = (env, { mode }) => ({
-  entry: './src/index.js',
+  entry: './src/js/index.js',
   output: {
     path: path.resolve(__dirname, './dist'),
     filename: 'bundle.js'
@@ -13,7 +13,7 @@ module.exports = (env, { mode }) => ({
       {
         test: /\.(js|vue)$/,
         use: 'eslint-loader',
-        include: [path.resolve(__dirname, 'src')],
+        include: [path.resolve(__dirname, 'src/js')],
         enforce: 'pre',
       },
       {
@@ -24,6 +24,7 @@ module.exports = (env, { mode }) => ({
       {
         test: /\.vue$/,
         loader: 'vue-loader',
+        include: [path.resolve(__dirname, 'src/js')],
         options: {
           // <style scoped>に対応
           loaders: {
@@ -43,7 +44,7 @@ module.exports = (env, { mode }) => ({
   resolve: {
     extensions: ['.js', '.vue'],
     alias: {
-      '@': path.resolve(__dirname, 'src'),
+      '@': path.resolve(__dirname, 'src/js'),
       vue$: 'vue/dist/vue.esm.js',
     },
   },
