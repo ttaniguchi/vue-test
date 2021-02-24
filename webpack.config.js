@@ -34,7 +34,11 @@ module.exports = (env, { mode }) => ({
     ]
   },
   devServer: {
-    contentBase: path.resolve(__dirname, 'public')
+    contentBase: path.resolve(__dirname, 'public'),
+    host: '0.0.0.0',
+    port: 8081,
+    open: true,
+    openPage: ''
   },
   resolve: {
     extensions: ['.js', '.vue'],
