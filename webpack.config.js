@@ -1,14 +1,21 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = (env, { mode }) => ({
   entry: './src/index.js',
   output: {
-    path: path.resolve(__dirname, './dest'),
+    path: path.resolve(__dirname, './dist'),
     filename: 'bundle.js'
   },
   module: {
     rules: [
+      {
+        test: /\.(js|vue)$/,
+        use: 'eslint-loader',
+        include: [path.resolve(__dirname, 'src')],
+        enforce: 'pre',
+      },
       {
         // <style module>に対応
         test: /\.css$/,
@@ -37,6 +44,12 @@ module.exports = (env, { mode }) => ({
     },
   },
   plugins: [
+    new HtmlWebpackPlugin({
+      hash: false,
+      minify: false,
+      filename: 'index.html',
+      template: './src/index.html',
+    }),
     new VueLoaderPlugin()
   ]
 });
