@@ -10,17 +10,18 @@ module.exports = (env, { mode }) => ({
   module: {
     rules: [
       {
+        // <style module>に対応
         test: /\.css$/,
-        use: ["style-loader", "css-loader"]
+        use: ["style-loader", "css-loader"],
       },
       {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: {
-          cssModules: {
-            localIdentName: '[path][name]---[local]---[hash:base64:5]',
-            camelCase: true,
-          },
+          // <style scoped>に対応
+          loaders: {
+            css: 'vue-style-loader!css-loader',
+          }
         },
       },
     ]
