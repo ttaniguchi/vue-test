@@ -2,6 +2,12 @@
   <div>
     <Header :title="title" />
 
+    <ol>
+      <li v-for="item in list" :key="item.id">
+        {{ item.title }}
+      </li>
+    </ol>
+
     <router-link :to="link.to">
       {{ link.label }}
     </router-link>
@@ -16,6 +22,11 @@ export default {
   components: {
     Header,
   },
+  computed: {
+    list() {
+      return this.$store.getters.list;
+    },
+  },
   data: () => ({
     title: NAMES.HOME,
     link: {
@@ -23,13 +34,13 @@ export default {
       to: { name: NAMES.CONTENT },
     },
   }),
-  beforeCreate: () => console.log('beforeCreate'),
-  created: () => console.log('created'),
-  beforeMount: () => console.log('beforeMount'),
-  mounted: () => console.log('mounted'),
-  beforeUpdate: () => console.log('beforeUpdate'),
-  updated: () => console.log('updated'),
-  beforeDestroy: () => console.log('beforeDestroy'),
-  destroyed: () => console.log('destroyed'),
+  methods: {
+    getList() {
+      this.$store.dispatch('getList');
+    },
+  },
+  mounted() {
+    this.getList();
+  },
 };
 </script>

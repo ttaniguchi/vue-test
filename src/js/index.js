@@ -1,10 +1,12 @@
 import Vue from 'vue';
 import App from '@/components/App';
 import router from '@/router';
+import store from '@/store';
 
 new Vue({
   el: '#app',
   components: { App },
   router,
-  template: '<app/>',
+  store,
+  template: '<App />',
 });
