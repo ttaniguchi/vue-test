@@ -6,10 +6,10 @@
       </button>
     </div>
 
-    <div class="loading" v-if="isLoading">
+    <div class="loading" v-show="isLoading">
       読込中…
     </div>
-    <div v-if="!isLoading && items.next">
+    <div v-show="!isLoading && items.next">
       <more-button v-on:onClick="getItems" />
     </div>
   </div>

@@ -3,11 +3,7 @@
     <default-header :title="title" :link="link" />
 
     <article-header :current="current" />
-    <article-body
-      v-if="current.rendered_body"
-      v-html="current.rendered_body"
-      :current="current"
-    />
+    <article-body :current="current" />
   </div>
 </template>
 
