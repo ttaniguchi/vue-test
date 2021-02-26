@@ -2,13 +2,11 @@
   <div>
     <default-header :title="title" :link="link" />
 
-    <div class="title">
-      {{ current.title }}
-    </div>
-    <article
-      class="inline-article"
+    <article-header :current="current" />
+    <article-body
       v-if="current.rendered_body"
       v-html="current.rendered_body"
+      :current="current"
     />
   </div>
 </template>
@@ -16,15 +14,19 @@
 <script>
 import { mapActions, mapGetters } from 'vuex';
 import { NAMES } from '@/router';
-import Header from '@/components/organisms/Header';
+import ArticleBody from '@/components/molecules/ArticleBody';
+import ArticleHeader from '@/components/molecules/ArticleHeader';
+import DefaultHeader from '@/components/organisms/DefaultHeader';
 
 export default {
   components: {
-    'default-header': Header,
+    'article-body': ArticleBody,
+    'article-header': ArticleHeader,
+    'default-header': DefaultHeader,
   },
   data: () => ({
-    title: NAMES.CONTENT,
-    link: { name: NAMES.HOME },
+    title: NAMES.ITEM,
+    link: { name: NAMES.ROOT },
   }),
   computed: {
     // getters
@@ -43,29 +45,6 @@ export default {
   },
 };
 </script>
-
-<style module>
-.inline-article {
-  padding: 24px;
-}
-.inline-article blockquote {
-  border-left: 5px solid #dddddd;
-  color: #777777;
-  padding: 1em;
-  padding-right: 0;
-  margin: 1.5em 0;
-}
-.inline-article pre {
-  background: #444444;
-  color: #ffffff;
-  padding: 8px;
-}
-.inline-article img {
-  box-sizing: border-box;
-  padding: 32px;
-  width: 100%;
-}
-</style>
 
 <style scoped>
 .title {

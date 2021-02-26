@@ -2,31 +2,31 @@ import Vue from 'vue';
 import Router from 'vue-router';
 
 import Home from '@/components/templates/Home';
-import Content from '@/components/templates/Content';
+import ItemDetail from '@/components/templates/ItemDetail';
 
 Vue.use(Router);
 
 export const NAMES = {
-  HOME: '新着一覧',
-  CONTENT: '記事の詳細',
+  ROOT: '新着一覧',
+  ITEM: '記事の詳細',
 };
 
 export default new Router({
   mode: 'hash',
   routes: [
     {
-      path: '/contents/:articleId',
-      name: NAMES.CONTENT,
-      component: Content,
+      path: '/items/:articleId',
+      name: NAMES.ITEM,
+      component: ItemDetail,
     },
     {
       path: '/',
-      name: NAMES.HOME,
+      name: NAMES.ROOT,
       component: Home,
     },
     {
       path: '/*',
-      redirect: { name: NAMES.HOME },
+      redirect: { name: NAMES.ROOT },
     },
   ],
 });
