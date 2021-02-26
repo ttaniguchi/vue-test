@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
@@ -38,7 +39,7 @@ module.exports = (env, { mode }) => ({
     contentBase: path.resolve(__dirname, 'public'),
     host: '0.0.0.0',
     port: 8081,
-    open: true,
+    open: false,
     openPage: ''
   },
   resolve: {
@@ -55,6 +56,9 @@ module.exports = (env, { mode }) => ({
       filename: 'index.html',
       template: './src/index.html',
     }),
-    new VueLoaderPlugin()
+    new VueLoaderPlugin(),
+    new webpack.DefinePlugin({
+      QIITA_ACCESS_TOKEN: JSON.stringify(process.env.QIITA_ACCESS_TOKEN),
+    }),
   ]
 });

@@ -5,11 +5,18 @@ import 'es6-promise/auto';
 
 import dummyData from '@/dummy/article.json';
 
+const headers = {
+  'Content-Type': 'application/json',
+};
+
+// webpackからにQIITA_ACCESS_TOKENを埋め込む
+if (QIITA_ACCESS_TOKEN) {
+  headers.Authorization = `Bearer ${QIITA_ACCESS_TOKEN}`;
+}
+
 const axios = axiosBase.create({
   baseURL: 'https://qiita.com/api/v2/',
-  headers: {
-    'Content-Type': 'application/json',
-  },
+  headers,
 });
 
 Vue.use(Vuex);
