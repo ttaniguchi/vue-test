@@ -1,9 +1,9 @@
 <template>
   <div class="root">
-    <div class="left-column">
+    <div class="left">
       <img class="avatar" :src="item.user.profile_image_url" />
     </div>
-    <div class="right-column">
+    <div class="right">
       <div>{{ item.created_at | fromNow }}</div>
       <div class="title">{{ item.title }}</div>
     </div>
@@ -35,13 +35,14 @@ export default {
   justify-content: flex-start;
   padding: 16px;
 }
-.left-column {
-  text-align: left;
-  width: 64px;
+.root > .left {
+  width: 48px;
 }
-.right-column {
+.root > .right {
+  box-sizing: border-box;
+  padding-left: 8px;
   text-align: left;
-  width: calc(100% - 64px);
+  width: calc(100% - 48px);
 }
 .avatar {
   border-radius: 48px;

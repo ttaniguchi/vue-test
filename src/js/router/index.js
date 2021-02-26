@@ -7,8 +7,8 @@ import Content from '@/components/templates/Content';
 Vue.use(Router);
 
 export const NAMES = {
-  HOME: 'home',
-  CONTENT: 'content',
+  HOME: '新着一覧',
+  CONTENT: '記事の詳細',
 };
 
 export default new Router({

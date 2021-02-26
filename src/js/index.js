@@ -5,7 +5,9 @@ import store from '@/store';
 
 new Vue({
   el: '#app',
-  components: { App },
+  components: {
+    App,
+  },
   router,
   store,
   template: '<App />',
