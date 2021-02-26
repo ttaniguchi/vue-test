@@ -6,25 +6,25 @@
       </button>
     </div>
 
-    <div class="more" v-if="isLoading">
+    <div class="loading" v-if="isLoading">
       読込中…
     </div>
-    <button v-if="!isLoading && items.next" class="enhanced" @click="getItems">
-      <div class="more">
-        もっと見る
-      </div>
-    </button>
+    <div v-if="!isLoading && items.next">
+      <more-button v-on:onClick="getItems" />
+    </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 import { NAMES } from '@/router';
+import MoreButton from '@/components/atoms/MoreButton';
 import ArticleCard from '@/components/organisms/ArticleCard';
 
 export default {
   components: {
     'article-card': ArticleCard,
+    'more-button': MoreButton,
   },
   computed: {
     // getters
@@ -37,29 +37,19 @@ export default {
     linkTo(articleId) {
       this.$router.push({ name: NAMES.ITEM, params: { articleId } });
     },
-    getItems() {
-      this.$emit('getItems');
-    },
+    // actions
+    ...mapActions({
+      getItems: 'fetchNewArticles',
+    }),
+  },
+  mounted() {
+    this.getItems();
   },
 };
 </script>
 
 <style scoped>
-.enhanced {
-  background-color: rgba(0, 0, 0, 0);
-  border: none;
-  padding: 0;
-  width: 100%;
-}
-.enhanced:hover {
-  background-color: rgba(0, 0, 0, 0.1);
-  outline: none;
-}
-.enhanced:focus {
-  background-color: rgba(0, 0, 0, 0.2);
-  outline: none;
-}
-.more {
+.loading {
   align-items: center;
   display: flex;
   height: 96px;

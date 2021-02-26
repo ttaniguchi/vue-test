@@ -2,12 +2,11 @@
   <div>
     <default-header :title="title" />
 
-    <new-list v-on:getItems="getItems()" />
+    <new-list />
   </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex';
 import { NAMES } from '@/router';
 import DefaultHeader from '@/components/organisms/DefaultHeader';
 import NewList from '@/components/organisms/NewList';
@@ -20,14 +19,5 @@ export default {
   data: () => ({
     title: NAMES.ROOT,
   }),
-  methods: {
-    // actions
-    ...mapActions({
-      getItems: 'fetchNewArticles',
-    }),
-  },
-  mounted() {
-    this.getItems();
-  },
 };
 </script>
