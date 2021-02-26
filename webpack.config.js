@@ -1,13 +1,17 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const GitRevisionPlugin = require('git-revision-webpack-plugin');
+const NotifierPlugin = require('webpack-notifier');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
+
+const gitRevision = new GitRevisionPlugin();
 
 module.exports = (env, { mode }) => ({
   entry: './src/js/index.js',
   output: {
     path: path.resolve(__dirname, './dist'),
-    filename: 'bundle.js'
+    filename: `bundle.[git-revision-version].js`,
   },
   module: {
     rules: [
@@ -50,15 +54,29 @@ module.exports = (env, { mode }) => ({
     },
   },
   plugins: [
+    gitRevision,
     new HtmlWebpackPlugin({
       hash: false,
       minify: false,
       filename: 'index.html',
       template: './src/index.html',
     }),
+    new NotifierPlugin({
+      title: 'Webpack ビルド完了',
+      excludeWarnings: false,
+      alwaysNotify: false,
+      skipFirstNotification: false,
+    }),
     new VueLoaderPlugin(),
     new webpack.DefinePlugin({
       QIITA_ACCESS_TOKEN: JSON.stringify(process.env.QIITA_ACCESS_TOKEN),
+    }),
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        eslint: {
+          configFile: './.eslintrc',
+        }
+      }
     }),
   ]
 });
