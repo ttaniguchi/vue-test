@@ -1,26 +1,44 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import axios from 'axios';
+import axiosBase from 'axios';
 import 'es6-promise/auto';
+
+import dummyData from '@/dummy/article.json';
+
+const axios = axiosBase.create({
+  baseURL: 'https://qiita.com/api/v2/',
+});
 
 Vue.use(Vuex);
 
+const LIMIT = 20;
+
 const state = {
-  data: [],
+  articles: [],
+  articlePage: 1,
 };
 const getters = {
-  list: state => state.data,
+  newArticles: state => state.articles,
 };
 const mutations = {
-  getList: (state, payload) => {
-    state.data = payload;
+  setNewArticles: (state, payload) => {
+    if (payload.response.data.length > 0) {
+      state.articles = payload.response.data;
+      state.articlePage = payload.page;
+    }
   },
 };
 const actions = {
-  getList: ctx => {
+  fetchNewArticles: (ctx, page = 1) => {
     axios
-      .get('https://qiita.com/api/v2/items?page=1&per_page=20')
-      .then(response => ctx.commit('getList', response.data));
+      .get(`/items?page=${page}&per_page=${LIMIT}`)
+      .then(response => ctx.commit('setNewArticles', { response, page }));
+  },
+
+  // dummy
+  fetchDummyNewArticles: (ctx, page = 1) => {
+    ctx.commit('setNewArticles', { response: { data: [dummyData] }, page });
+    return;
   },
 };
 

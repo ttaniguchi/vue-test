@@ -3,7 +3,7 @@
     <Header :title="title" />
 
     <ol>
-      <li v-for="item in list" :key="item.id">
+      <li v-for="item in contents" :key="item.id">
         {{ item.title }}
       </li>
     </ol>
@@ -15,17 +15,13 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex';
 import { NAMES } from '@/router';
 import Header from '@/components/Header';
 
 export default {
   components: {
     Header,
-  },
-  computed: {
-    list() {
-      return this.$store.getters.list;
-    },
   },
   data: () => ({
     title: NAMES.HOME,
@@ -34,13 +30,20 @@ export default {
       to: { name: NAMES.CONTENT },
     },
   }),
+  computed: {
+    // getters
+    ...mapGetters({
+      contents: 'newArticles',
+    }),
+  },
   methods: {
-    getList() {
-      this.$store.dispatch('getList');
-    },
+    // actions
+    ...mapActions({
+      getContents: 'fetchNewArticles',
+    }),
   },
   mounted() {
-    this.getList();
+    this.getContents();
   },
 };
 </script>
