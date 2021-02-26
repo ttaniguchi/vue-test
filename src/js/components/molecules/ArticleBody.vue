@@ -31,6 +31,7 @@ export default {
 .article-render pre {
   background: #444444;
   color: #ffffff;
+  overflow-x: scroll;
   padding: 8px;
 }
 .article-render img {
