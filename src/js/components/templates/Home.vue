@@ -2,39 +2,52 @@
   <div>
     <default-header :title="title" />
 
-    <ol>
-      <li v-for="item in contents.data" :key="item.id">
-        <router-link :to="link(item.id)">
-          {{ item.title }}
-        </router-link>
-      </li>
-      <li v-if="contents.next">
-        <button @click="getContents">next</button>
-      </li>
-    </ol>
+    <div v-for="item in contents.data" :key="item.id">
+      <button class="enhanced" @click="linkTo(item.id)">
+        <article-card :item="item" />
+      </button>
+    </div>
+
+    <div class="more" v-if="isLoading">
+      読込中…
+    </div>
+    <button
+      v-if="!isLoading && contents.next"
+      class="enhanced"
+      @click="getContents"
+    >
+      <div class="more">
+        もっと見る
+      </div>
+    </button>
   </div>
 </template>
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
 import { NAMES } from '@/router';
+import ArticleCard from '@/components/organisms/ArticleCard';
 import Header from '@/components/organisms/Header';
 
 export default {
   components: {
+    'article-card': ArticleCard,
     'default-header': Header,
   },
   data: () => ({
     title: NAMES.HOME,
-    link: articleId => ({ name: NAMES.CONTENT, params: { articleId } }),
   }),
   computed: {
     // getters
     ...mapGetters({
       contents: 'newArticles',
+      isLoading: 'isLoading',
     }),
   },
   methods: {
+    linkTo(articleId) {
+      this.$router.push({ name: NAMES.CONTENT, params: { articleId } });
+    },
     // actions
     ...mapActions({
       getContents: 'fetchNewArticles',
@@ -45,3 +58,26 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.enhanced {
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  padding: 0;
+  width: 100%;
+}
+.enhanced:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  outline: none;
+}
+.enhanced:focus {
+  background-color: rgba(0, 0, 0, 0.2);
+  outline: none;
+}
+.more {
+  align-items: center;
+  display: flex;
+  height: 96px;
+  justify-content: center;
+}
+</style>
