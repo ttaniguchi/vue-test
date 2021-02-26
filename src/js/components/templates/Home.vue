@@ -1,34 +1,29 @@
 <template>
   <div>
-    <Header :title="title" />
+    <default-header :title="title" />
 
     <ol>
       <li v-for="item in contents" :key="item.id">
-        {{ item.title }}
+        <router-link :to="link(item.id)">
+          {{ item.title }}
+        </router-link>
       </li>
     </ol>
-
-    <router-link :to="link.to">
-      {{ link.label }}
-    </router-link>
   </div>
 </template>
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
 import { NAMES } from '@/router';
-import Header from '@/components/Header';
+import Header from '@/components/organisms/Header';
 
 export default {
   components: {
-    Header,
+    'default-header': Header,
   },
   data: () => ({
     title: NAMES.HOME,
-    link: {
-      label: `${NAMES.CONTENT}へ移動`,
-      to: { name: NAMES.CONTENT },
-    },
+    link: articleId => ({ name: NAMES.CONTENT, params: { articleId } }),
   }),
   computed: {
     // getters

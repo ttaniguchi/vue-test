@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
-import Home from '@/components/Home';
-import Content from '@/components/Content';
+import Home from '@/components/templates/Home';
+import Content from '@/components/templates/Content';
 
 Vue.use(Router);
 
@@ -15,14 +15,18 @@ export default new Router({
   mode: 'hash',
   routes: [
     {
+      path: '/contents/:articleId',
+      name: NAMES.CONTENT,
+      component: Content,
+    },
+    {
       path: '/',
       name: NAMES.HOME,
       component: Home,
     },
     {
-      path: '/content',
-      name: NAMES.CONTENT,
-      component: Content,
+      path: '/*',
+      redirect: { name: NAMES.HOME },
     },
   ],
 });
