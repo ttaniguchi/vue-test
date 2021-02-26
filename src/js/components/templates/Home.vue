@@ -3,10 +3,13 @@
     <default-header :title="title" />
 
     <ol>
-      <li v-for="item in contents" :key="item.id">
+      <li v-for="item in contents.data" :key="item.id">
         <router-link :to="link(item.id)">
           {{ item.title }}
         </router-link>
+      </li>
+      <li v-if="contents.next">
+        <button @click="getContents">next</button>
       </li>
     </ol>
   </div>
