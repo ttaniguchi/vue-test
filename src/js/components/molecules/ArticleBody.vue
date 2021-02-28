@@ -21,6 +21,9 @@ export default {
 .article-render {
   padding: 24px;
 }
+.article-render a {
+  word-break: break-all;
+}
 .article-render blockquote {
   border-left: 5px solid #dddddd;
   color: #777777;
