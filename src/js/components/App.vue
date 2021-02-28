@@ -3,7 +3,11 @@
 </template>
 
 <style module>
+@import url(http://fonts.googleapis.com/earlyaccess/notosansjp.css);
+
 body {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 100%;
   margin: 0;
 }
 .enhanced {
