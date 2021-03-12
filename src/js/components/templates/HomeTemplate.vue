@@ -2,19 +2,19 @@
   <div>
     <default-header :title="title" />
 
-    <new-list />
+    <new-article-list />
   </div>
 </template>
 
 <script>
 import { NAMES } from '@/router';
 import DefaultHeader from '@/components/organisms/DefaultHeader';
-import NewList from '@/components/organisms/NewList';
+import NewArticleList from '@/components/organisms/NewArticleList';
 
 export default {
   components: {
     'default-header': DefaultHeader,
-    'new-list': NewList,
+    'new-article-list': NewArticleList,
   },
   data: () => ({
     title: NAMES.ROOT,

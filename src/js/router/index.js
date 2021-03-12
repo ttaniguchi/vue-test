@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
-import Home from '@/components/templates/Home';
-import ItemDetail from '@/components/templates/ItemDetail';
+import HomeTemplate from '@/components/templates/HomeTemplate';
+import ItemDetailTemplate from '@/components/templates/ItemDetailTemplate';
 
 Vue.use(Router);
 
@@ -17,12 +17,12 @@ export default new Router({
     {
       path: '/items/:articleId',
       name: NAMES.ITEM,
-      component: ItemDetail,
+      component: ItemDetailTemplate,
     },
     {
       path: '/',
       name: NAMES.ROOT,
-      component: Home,
+      component: HomeTemplate,
     },
     {
       path: '/*',

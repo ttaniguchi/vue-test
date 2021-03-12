@@ -1,7 +1,7 @@
 <template>
   <div class="root">
     <div class="left">
-      <img class="avatar" :src="item.user.profile_image_url" />
+      <avatar-image :src="item.user.profile_image_url" />
     </div>
     <div class="right">
       <div>{{ item.created_at | fromNow }}</div>
@@ -12,8 +12,12 @@
 
 <script>
 import moment from 'moment';
+import AvatarImage from '@/components/atoms/AvatarImage.vue';
 
 export default {
+  components: {
+    'avatar-image': AvatarImage,
+  },
   props: {
     item: {
       type: Object,
@@ -43,11 +47,6 @@ export default {
   padding-left: 8px;
   text-align: left;
   width: calc(100% - 48px);
-}
-.avatar {
-  border-radius: 48px;
-  height: 48px;
-  width: 48px;
 }
 .title {
   color: #337ab7;
