@@ -53,6 +53,9 @@ module.exports = (env, { mode }) => ({
       vue$: 'vue/dist/vue.esm.js',
     },
   },
+  stats: {
+    errorDetails: true,
+  },
   plugins: [
     gitRevision,
     new HtmlWebpackPlugin({
