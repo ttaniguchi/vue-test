@@ -9,7 +9,7 @@
     </div>
 
     <div v-show="!isLoading && items.next">
-      <more-button v-on:onClick="getItems" />
+      <more-button @click="fetchItems(items.next)" />
     </div>
   </div>
 </template>
@@ -38,13 +38,16 @@ export default {
     linkTo(articleId) {
       this.$router.push({ name: NAMES.ITEM, params: { articleId } });
     },
+    fetchItems(page = 1) {
+      this.fetchNewArticles({ page, query: this.$route.params.query });
+    },
     // actions
     ...mapActions({
-      getItems: 'fetchNewArticles',
+      fetchNewArticles: 'fetchNewArticles',
     }),
   },
   mounted() {
-    this.getItems();
+    this.fetchItems();
   },
 };
 </script>

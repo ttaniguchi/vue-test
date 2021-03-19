@@ -1,5 +1,5 @@
 <template>
-  <button class="enhanced" @click="onClick">
+  <button class="enhanced" @click="click">
     <div class="more">
       もっと見る
     </div>
@@ -9,8 +9,8 @@
 <script>
 export default {
   methods: {
-    onClick() {
-      this.$emit('onClick');
+    click() {
+      this.$emit('click');
     },
   },
 };

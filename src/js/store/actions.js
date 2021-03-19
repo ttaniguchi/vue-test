@@ -1,5 +1,4 @@
 import axiosBase from 'axios';
-import dummyData from '@/dummy/article.json';
 
 const LIMIT = 100;
 
@@ -18,23 +17,25 @@ const axios = axiosBase.create({
 });
 
 const actions = {
-  fetchNewArticles: ctx => {
+  fetchNewArticles: (ctx, { page, query }) => {
     ctx.commit('setLoading');
 
-    const page = ctx.state.articles.next;
     axios
-      .get(`/items?page=${page}&per_page=${LIMIT}`)
+      .get('/items', {
+        params: {
+          page,
+          per_page: LIMIT,
+          query: query || undefined,
+        },
+      })
       .then(response =>
-        ctx.commit('setNewArticles', { response, page, limit: LIMIT }),
+        ctx.commit('setNewArticles', {
+          data: response.data,
+          page,
+          limit: LIMIT,
+          query,
+        }),
       );
-  },
-
-  // dummy
-  fetchDummyNewArticles: ctx => {
-    ctx.commit('setLoading');
-
-    ctx.commit('setNewArticles', { response: { data: [dummyData] }, page });
-    return;
   },
 
   fetchCurrentArticle: (ctx, { articleId }) => {
