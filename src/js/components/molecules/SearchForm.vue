@@ -1,59 +1,49 @@
 <template>
-  <form class="search" @submit="search">
-    <input class="search" v-model="query" />
+  <form class="search" @submit="submit">
+    <input class="search" v-model="keyword" />
   </form>
 </template>
 
 <script>
-import { NAMES } from '@/router';
-
 export default {
+  props: {
+    value: {
+      type: String,
+      default: '',
+      required: false,
+    },
+  },
   computed: {
-    query: {
+    keyword: {
       get() {
-        return this.innerQuery;
+        return this.value;
       },
       set(value) {
-        this.innerQuery = value;
+        this.innerKeyword = value;
       },
     },
   },
-  data: () => ({
-    innerQuery: '',
-  }),
-  watch: {
-    $query() {
-      this.innerQuery = (this.$route.params && this.$route.params.query) || '';
-    },
-  },
-  mounted() {
-    this.innerQuery = (this.$route.params && this.$route.params.query) || '';
-  },
   methods: {
-    search() {
-      this.$router
-        .push({
-          name: NAMES.SEARCH,
-          params: { query: this.query },
-        })
-        .catch(() => {});
+    submit() {
+      this.$emit('submit', this.innerKeyword);
     },
   },
 };
 </script>
 <style scoped>
 form.search {
-  padding: 8px 16px;
+  padding: 16px;
 }
 input.search {
-  display: flex;
-  width: 100%;
-  line-height: 30px;
+  border-radius: 16px;
+  border: 1px solid black;
   box-sizing: border-box;
-  border: none;
-  border-bottom: 1px solid black;
-  outline: none;
+  display: flex;
   font-size: 18px;
   font-weight: bold;
+  line-height: 32px;
+  outline: none;
+  padding: 0 16px;
+  width: 100%;
 }
 </style>

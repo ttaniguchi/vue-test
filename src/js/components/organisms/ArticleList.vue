@@ -22,6 +22,13 @@ import TextLoader from '@/components/atoms/TextLoader';
 import ArticleCard from '@/components/molecules/ArticleCard';
 
 export default {
+  props: {
+    query: {
+      type: String,
+      default: '',
+      required: false,
+    },
+  },
   components: {
     'article-card': ArticleCard,
     'more-button': MoreButton,
@@ -35,19 +42,16 @@ export default {
     }),
   },
   watch: {
-    $route() {
+    query() {
       this.fetchItems();
     },
-  },
-  mounted() {
-    this.fetchItems();
   },
   methods: {
     linkTo(articleId) {
       this.$router.push({ name: NAMES.ITEM, params: { articleId } });
     },
     fetchItems(page = 1) {
-      this.fetchNewArticles({ page, query: this.$route.params.query });
+      this.fetchNewArticles({ page, query: this.query });
     },
     // actions
     ...mapActions({
