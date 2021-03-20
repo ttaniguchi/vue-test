@@ -34,6 +34,14 @@ export default {
       isLoading: 'isLoading',
     }),
   },
+  watch: {
+    $route() {
+      this.fetchItems();
+    },
+  },
+  mounted() {
+    this.fetchItems();
+  },
   methods: {
     linkTo(articleId) {
       this.$router.push({ name: NAMES.ITEM, params: { articleId } });
@@ -45,9 +53,6 @@ export default {
     ...mapActions({
       fetchNewArticles: 'fetchNewArticles',
     }),
-  },
-  mounted() {
-    this.fetchItems();
   },
 };
 </script>

@@ -7,8 +7,9 @@ import ItemDetailTemplate from '@/components/templates/ItemDetailTemplate';
 Vue.use(Router);
 
 export const NAMES = {
-  ROOT: '新着一覧',
-  ITEM: '記事の詳細',
+  ROOT: '新着',
+  SEARCH: '検索',
+  ITEM: '詳細',
 };
 
 export default new Router({
@@ -18,6 +19,11 @@ export default new Router({
       path: '/items/:articleId',
       name: NAMES.ITEM,
       component: ItemDetailTemplate,
+    },
+    {
+      path: '/search/:query',
+      name: NAMES.SEARCH,
+      component: HomeTemplate,
     },
     {
       path: '/',
