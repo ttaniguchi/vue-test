@@ -8,9 +8,9 @@
 
 <script>
 import { NAMES } from '@/router';
+import SearchForm from '@/components/molecules/SearchForm.vue';
 import DefaultHeader from '@/components/organisms/DefaultHeader';
 import NewArticleList from '@/components/organisms/NewArticleList';
-import SearchForm from '@/components/organisms/SearchForm.vue';
 
 export default {
   components: {
