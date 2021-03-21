@@ -1,10 +1,15 @@
 <template>
   <form class="search" @submit="submit">
     <input class="search" v-model="keyword" />
+    <div class="icon" @click="submit">
+      <icon-search color="#000000" />
+    </div>
   </form>
 </template>
 
 <script>
+import IconSearch from '@/components/atoms/IconSearch';
+
 export default {
   props: {
     value: {
@@ -12,6 +17,9 @@ export default {
       default: '',
       required: false,
     },
+  },
+  components: {
+    'icon-search': IconSearch,
   },
   computed: {
     keyword: {
@@ -31,8 +39,16 @@ export default {
 };
 </script>
 <style scoped>
+.icon {
+  display: inline-flex;
+  position: absolute;
+  right: 24px;
+}
 form.search {
+  align-items: center;
+  display: flex;
   padding: 16px;
+  position: relative;
 }
 input.search {
   border-radius: 16px;
@@ -43,7 +59,7 @@ input.search {
   font-weight: bold;
   line-height: 32px;
   outline: none;
-  padding: 0 16px;
+  padding: 0 36px 0 12px;
   width: 100%;
 }
 </style>
