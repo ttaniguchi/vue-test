@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
-import HomeTemplate from '@/components/templates/HomeTemplate';
-import ItemDetailTemplate from '@/components/templates/ItemDetailTemplate';
+import HomeTemplate from '@/components/templates/HomeTemplate.vue';
+import ItemDetailTemplate from '@/components/templates/ItemDetailTemplate.vue';
 
 Vue.use(Router);
 

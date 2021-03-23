@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import IconSearch from '@/components/atoms/IconSearch';
+import IconSearch from '@/components/atoms/IconSearch.vue';
 
 export default {
   props: {

@@ -17,9 +17,9 @@
 <script>
 import { mapActions, mapGetters } from 'vuex';
 import { NAMES } from '@/router';
-import MoreButton from '@/components/atoms/MoreButton';
-import TextLoader from '@/components/atoms/TextLoader';
-import ArticleCard from '@/components/molecules/ArticleCard';
+import MoreButton from '@/components/atoms/MoreButton.vue';
+import TextLoader from '@/components/atoms/TextLoader.vue';
+import ArticleCard from '@/components/molecules/ArticleCard.vue';
 
 export default {
   props: {

@@ -10,9 +10,9 @@
 <script>
 import { mapActions, mapGetters } from 'vuex';
 import { NAMES } from '@/router';
-import ArticleBody from '@/components/molecules/ArticleBody';
-import ArticleHeader from '@/components/molecules/ArticleHeader';
-import DefaultHeader from '@/components/organisms/DefaultHeader';
+import ArticleBody from '@/components/molecules/ArticleBody.vue';
+import ArticleHeader from '@/components/molecules/ArticleHeader.vue';
+import DefaultHeader from '@/components/organisms/DefaultHeader.vue';
 
 export default {
   components: {

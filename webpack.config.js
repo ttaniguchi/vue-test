@@ -7,6 +7,8 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 const gitRevision = new GitRevisionPlugin();
 
+const isDevelopment = mode => (mode === 'development');
+
 module.exports = (env, { mode }) => ({
   entry: './src/js/index.js',
   output: {
@@ -46,12 +48,17 @@ module.exports = (env, { mode }) => ({
     open: false,
     openPage: ''
   },
+  devtool: isDevelopment(mode) ? 'source-map' : false,
   resolve: {
-    extensions: ['.js', '.vue'],
+    extensions: ['.js', '.ts'],
     alias: {
       '@': path.resolve(__dirname, 'src/js'),
       vue$: 'vue/dist/vue.esm.js',
     },
+    modules: [
+      path.resolve('./src/js'),
+      path.resolve('./node_modules'),
+    ],
   },
   stats: {
     errorDetails: true,
